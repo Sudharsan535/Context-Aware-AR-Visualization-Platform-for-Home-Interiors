@@ -454,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 931424913}
-  - component: {fileID: 931424912}
+  - component: {fileID: 931424914}
   m_Layer: 0
   m_Name: FurniturePlacementSystem
   m_TagString: Untagged
@@ -462,20 +462,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &931424912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931424911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b57120d965ae542bd6ad327f3105fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastManager: {fileID: 409173575}
-  placementIndicator: {fileID: 1062263047}
 --- !u!4 &931424913
 Transform:
   m_ObjectHideFlags: 0
@@ -491,6 +477,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &931424914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931424911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421c99bac8eda134aab5ebd65ecdc034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementIndicator: {fileID: 1062263048}
+  raycastManager: {fileID: 409173575}
+  furniturePrefab: {fileID: 4879976823138872163, guid: aabedeb73a85fbf498d2fbbcab41d78d, type: 3}
 --- !u!1 &932930890
 GameObject:
   m_ObjectHideFlags: 0
