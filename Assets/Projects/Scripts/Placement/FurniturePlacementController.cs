@@ -2,24 +2,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 
 public class FurniturePlacementController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlacementIndicatorController placementIndicator;
-    [SerializeField] private ARRaycastManager raycastManager;
+    [SerializeField] private ARAnchorManager anchorManager;
+    [SerializeField] private TextMeshProUGUI debugText;
 
     [Header("Furniture")]
     [SerializeField] private GameObject furniturePrefab;
 
-    private GameObject spawnedFurniture;
-    private static readonly List<ARRaycastHit> hits = new();
+    private readonly List<GameObject> spawnedFurniture = new();
 
+    
     private void Update()
     {
-        if (spawnedFurniture != null)
+        if (!AppModeController.Instance.IsPlacementMode())
             return;
 
+        // ---------- Debug (on device) ----------
+        if (debugText != null)
+        {
+            debugText.text =
+                $"Touches: {Input.touchCount}\n" +
+                $"PlacementValid: {placementIndicator.IsPlacementValid()}";
+        }
+
+        // ---------- Placement checks ----------
         if (!placementIndicator.IsPlacementValid())
             return;
 
@@ -31,6 +42,10 @@ public class FurniturePlacementController : MonoBehaviour
         if (touch.phase != TouchPhase.Began)
             return;
 
+        // 🔒 IMPORTANT: Do NOT place if touching existing furniture
+        if (IsTouchOverFurniture(touch))
+            return;
+
         PlaceFurniture();
     }
 
@@ -38,23 +53,33 @@ public class FurniturePlacementController : MonoBehaviour
     {
         Pose pose = placementIndicator.GetPlacementPose();
 
-        spawnedFurniture = Instantiate(
+        // Create anchor object
+        GameObject anchorObject = new GameObject("FurnitureAnchor");
+        anchorObject.transform.SetPositionAndRotation(pose.position, pose.rotation);
+
+        ARAnchor anchor = anchorObject.AddComponent<ARAnchor>();
+
+        if (anchor == null)
+        {
+            Destroy(anchorObject);
+            return;
+        }
+
+        GameObject furniture = Instantiate(
             furniturePrefab,
-            pose.position,
-            pose.rotation
+            anchor.transform.position,
+            anchor.transform.rotation,
+            anchor.transform
         );
+
+        spawnedFurniture.Add(furniture);
+        AppModeController.Instance.SetEditMode();
     }
 
-    public GameObject GetPlacedFurniture()
+    // ---------- Helper ----------
+    private bool IsTouchOverFurniture(Touch touch)
     {
-        return spawnedFurniture;
-    }
-
-    public void ResetPlacement()
-    {
-        if (spawnedFurniture != null)
-            Destroy(spawnedFurniture);
-
-        spawnedFurniture = null;
+        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+        return Physics.Raycast(ray);
     }
 }

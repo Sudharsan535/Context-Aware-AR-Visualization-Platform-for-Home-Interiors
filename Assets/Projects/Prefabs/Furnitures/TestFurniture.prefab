@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1709540002187083764}
   - component: {fileID: 8831987334960170677}
   - component: {fileID: 3054131170956541817}
+  - component: {fileID: -3388227012736220739}
   m_Layer: 0
   m_Name: TestFurniture
   m_TagString: Untagged
@@ -108,3 +109,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3388227012736220739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4879976823138872163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4115fad86080afc40bc2629b3ef3faa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastManager: {fileID: 0}
+  selectedMaterial: {fileID: 2100000, guid: ac4c790e58f85f449b7c699c9eeec6da, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: ffe13997e2553fe4c8f9fbe2d3bced08, type: 2}
