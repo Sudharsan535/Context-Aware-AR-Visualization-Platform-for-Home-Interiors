@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
 using TMPro;
 
 public class FurniturePlacementController : MonoBehaviour
@@ -10,19 +9,18 @@ public class FurniturePlacementController : MonoBehaviour
     [SerializeField] private PlacementIndicatorController placementIndicator;
     [SerializeField] private ARAnchorManager anchorManager;
     [SerializeField] private TextMeshProUGUI debugText;
+    [SerializeField] private EnvironmentColorSampler colorSampler;
 
     [Header("Furniture")]
     [SerializeField] private GameObject furniturePrefab;
 
     private readonly List<GameObject> spawnedFurniture = new();
 
-    
     private void Update()
     {
         if (!AppModeController.Instance.IsPlacementMode())
             return;
 
-        // ---------- Debug (on device) ----------
         if (debugText != null)
         {
             debugText.text =
@@ -30,7 +28,6 @@ public class FurniturePlacementController : MonoBehaviour
                 $"PlacementValid: {placementIndicator.IsPlacementValid()}";
         }
 
-        // ---------- Placement checks ----------
         if (!placementIndicator.IsPlacementValid())
             return;
 
@@ -42,7 +39,6 @@ public class FurniturePlacementController : MonoBehaviour
         if (touch.phase != TouchPhase.Began)
             return;
 
-        // 🔒 IMPORTANT: Do NOT place if touching existing furniture
         if (IsTouchOverFurniture(touch))
             return;
 
@@ -53,7 +49,6 @@ public class FurniturePlacementController : MonoBehaviour
     {
         Pose pose = placementIndicator.GetPlacementPose();
 
-        // Create anchor object
         GameObject anchorObject = new GameObject("FurnitureAnchor");
         anchorObject.transform.SetPositionAndRotation(pose.position, pose.rotation);
 
@@ -72,11 +67,30 @@ public class FurniturePlacementController : MonoBehaviour
             anchor.transform
         );
 
+        // ✅ AUTO COLOR MATCH ON SPAWN
+        if (colorSampler != null &&
+            colorSampler.TryGetAverageColor(
+                new Vector2(Screen.width / 2f, Screen.height / 2f),
+                out Color sampledColor))
+        {
+            ApplyColorToFurniture(furniture, sampledColor);
+        }
+
         spawnedFurniture.Add(furniture);
+
         AppModeController.Instance.SetEditMode();
     }
 
-    // ---------- Helper ----------
+    private void ApplyColorToFurniture(GameObject furniture, Color color)
+    {
+        Renderer renderer = furniture.GetComponentInChildren<Renderer>();
+
+        if (renderer != null)
+        {
+            renderer.material.SetColor("_BaseColor", color);
+        }
+    }
+
     private bool IsTouchOverFurniture(Touch touch)
     {
         Ray ray = Camera.main.ScreenPointToRay(touch.position);

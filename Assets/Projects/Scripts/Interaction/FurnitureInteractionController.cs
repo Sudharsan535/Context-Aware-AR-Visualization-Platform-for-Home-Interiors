@@ -9,6 +9,9 @@ public class FurnitureInteractionController : MonoBehaviour
 {
     [Header("AR")]
     [SerializeField] private ARRaycastManager raycastManager;
+    
+    [SerializeField] private EnvironmentColorSampler colorSampler;
+
 
     [Header("Visual Feedback")]
     [SerializeField] private Material selectedMaterial;
@@ -53,7 +56,27 @@ public class FurnitureInteractionController : MonoBehaviour
             HandleMove(Input.GetTouch(0));
         else if (Input.touchCount == 2)
             HandleRotateAndScale();
+        // Manual color pick (tap release while selected)
+        if (isSelected && Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                if (colorSampler != null &&
+                    colorSampler.TryGetAverageColor(touch.position, out Color sampledColor))
+                {
+                    ApplyColor(sampledColor);
+                }
+            }
+        }
     }
+    private void ApplyColor(Color color)
+    {
+        if (objectRenderer != null)
+            objectRenderer.material.SetColor("_BaseColor", color);
+    }
+
 
     // ================= Selection =================
 
