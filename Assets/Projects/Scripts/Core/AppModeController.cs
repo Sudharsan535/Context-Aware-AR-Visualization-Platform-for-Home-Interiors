@@ -3,7 +3,8 @@ using UnityEngine;
 public enum AppMode
 {
     Placement,
-    Edit
+    Edit,
+    ColorPick
 }
 
 public class AppModeController : MonoBehaviour
@@ -37,6 +38,28 @@ public class AppModeController : MonoBehaviour
     {
         return CurrentMode == AppMode.Placement;
     }
+    
+    public string GetModeName()
+    {
+        return CurrentMode.ToString();
+        
+    }
+    public void SetColorPickMode()
+    {
+        CurrentMode = AppMode.ColorPick;
+    }
+
+    public bool IsColorPickMode()
+    {
+        return CurrentMode == AppMode.ColorPick;
+    }
+    
+    public void OnColorMatchPressed()
+    {
+        AppModeController.Instance.SetColorPickMode();
+    }
+
+
 
     public bool IsEditMode()
     {

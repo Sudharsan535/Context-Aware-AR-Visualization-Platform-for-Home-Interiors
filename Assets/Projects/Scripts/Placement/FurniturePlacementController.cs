@@ -18,14 +18,18 @@ public class FurniturePlacementController : MonoBehaviour
 
     private void Update()
     {
-        if (!AppModeController.Instance.IsPlacementMode())
+        if (AppModeController.Instance == null ||
+            !AppModeController.Instance.IsPlacementMode())
             return;
+
+
 
         if (debugText != null)
         {
             debugText.text =
                 $"Touches: {Input.touchCount}\n" +
                 $"PlacementValid: {placementIndicator.IsPlacementValid()}";
+            
         }
 
         if (!placementIndicator.IsPlacementValid())

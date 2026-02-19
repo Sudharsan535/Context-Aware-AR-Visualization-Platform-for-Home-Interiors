@@ -11,6 +11,13 @@ public class FurnitureInteractionController : MonoBehaviour
     [SerializeField] private ARRaycastManager raycastManager;
     
     [SerializeField] private EnvironmentColorSampler colorSampler;
+    
+    [Header("Highlight Settings")]
+    [SerializeField] private Color highlightEmissionColor = Color.yellow;
+    [SerializeField] private float emissionIntensity = 2f;
+
+    private Color originalEmissionColor;
+    private bool hasEmission;
 
 
     [Header("Visual Feedback")]
@@ -35,14 +42,43 @@ public class FurnitureInteractionController : MonoBehaviour
     private void Awake()
     {
         objectRenderer = GetComponentInChildren<Renderer>();
+
         if (objectRenderer != null)
-            defaultMaterial = objectRenderer.sharedMaterial;
+        {
+            if (objectRenderer.material.HasProperty("_EmissionColor"))
+            {
+                hasEmission = true;
+                originalEmissionColor =
+                    objectRenderer.material.GetColor("_EmissionColor");
+            }
+        }
+    }
+
+    
+    private void OnEnable()
+    {
+        if (AppModeController.Instance.IsColorPickMode())
+            Deselect();
     }
 
     private void Update()
     {
         if (!AppModeController.Instance.IsEditMode())
+        {
+            Deselect();
             return;
+        }
+
+        if (AppModeController.Instance.IsColorPickMode())
+        {
+            HandleColorPick();
+            return;
+        }
+
+        if (AppModeController.Instance == null ||
+            !AppModeController.Instance.IsEditMode())
+            return;
+
 
         if (!isSelected)
             return;
@@ -57,11 +93,14 @@ public class FurnitureInteractionController : MonoBehaviour
         else if (Input.touchCount == 2)
             HandleRotateAndScale();
         // Manual color pick (tap release while selected)
-        if (isSelected && Input.touchCount == 1)
+        if (isSelected &&
+            AppModeController.Instance.IsEditMode() &&
+            Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Ended)
+            if (touch.phase == TouchPhase.Ended &&
+                touch.deltaPosition.magnitude < 5f) // tiny movement only
             {
                 if (colorSampler != null &&
                     colorSampler.TryGetAverageColor(touch.position, out Color sampledColor))
@@ -70,6 +109,7 @@ public class FurnitureInteractionController : MonoBehaviour
                 }
             }
         }
+
     }
     private void ApplyColor(Color color)
     {
@@ -87,27 +127,39 @@ public class FurnitureInteractionController : MonoBehaviour
 
     private void Select()
     {
-        AppModeController.Instance.SetEditMode();
         if (activeObject != null && activeObject != this)
             activeObject.Deselect();
 
         activeObject = this;
         isSelected = true;
 
-        if (objectRenderer != null && selectedMaterial != null)
-            objectRenderer.sharedMaterial = selectedMaterial;
+        if (hasEmission)
+        {
+            objectRenderer.material.EnableKeyword("_EMISSION");
+            objectRenderer.material.SetColor(
+                "_EmissionColor",
+                highlightEmissionColor * emissionIntensity
+            );
+        }
     }
+
 
     private void Deselect()
     {
         isSelected = false;
 
-        if (objectRenderer != null && defaultMaterial != null)
-            objectRenderer.sharedMaterial = defaultMaterial;
+        if (hasEmission)
+        {
+            objectRenderer.material.SetColor(
+                "_EmissionColor",
+                originalEmissionColor
+            );
+        }
 
         if (activeObject == this)
             activeObject = null;
     }
+
 
     // ================= Move =================
 
@@ -123,6 +175,25 @@ public class FurnitureInteractionController : MonoBehaviour
         {
             transform.position = hits[0].pose.position;
         }
+    }
+    private void HandleColorPick()
+    {
+        if (Input.touchCount != 1)
+            return;
+
+        Touch touch = Input.GetTouch(0);
+
+        if (touch.phase != TouchPhase.Ended)
+            return;
+
+        if (colorSampler != null &&
+            colorSampler.TryGetAverageColor(touch.position, out Color sampledColor))
+        {
+            ApplyColor(sampledColor);
+        }
+
+        // Optional: auto-exit color mode
+        AppModeController.Instance.SetEditMode();
     }
 
     // ================= Rotate & Scale =================
