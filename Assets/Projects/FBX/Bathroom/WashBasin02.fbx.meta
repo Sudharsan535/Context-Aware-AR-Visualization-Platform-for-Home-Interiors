@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: b25c0c611728c6d43af0d8720ab9abe4
+AssetOrigin:
+  serializedVersion: 1
+  productId: 330002
+  packageName: Furniture Mega Pack - Free
+  packageVersion: 1.0
+  assetPath: Assets/Furniture Mega Pack/FBX/Bathroom/WashBasin02.fbx
+  uploadId: 785398
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -35,7 +42,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
@@ -105,10 +112,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 330002
-  packageName: Furniture Mega Pack - Free
-  packageVersion: 1.0
-  assetPath: Assets/Furniture Mega Pack/FBX/Bathroom/WashBasin02.fbx
-  uploadId: 785398

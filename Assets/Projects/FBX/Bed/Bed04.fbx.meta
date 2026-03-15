@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 67016b7fd165e9142a492bd065769ca1
+AssetOrigin:
+  serializedVersion: 1
+  productId: 330002
+  packageName: Furniture Mega Pack - Free
+  packageVersion: 1.0
+  assetPath: Assets/Furniture Mega Pack/FBX/Bed/Bed04.fbx
+  uploadId: 785398
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -105,10 +112,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 330002
-  packageName: Furniture Mega Pack - Free
-  packageVersion: 1.0
-  assetPath: Assets/Furniture Mega Pack/FBX/Bed/Bed04.fbx
-  uploadId: 785398

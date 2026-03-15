@@ -11,8 +11,7 @@ public class FurniturePlacementController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI debugText;
     [SerializeField] private EnvironmentColorSampler colorSampler;
 
-    [Header("Furniture")]
-    [SerializeField] private GameObject furniturePrefab;
+   
 
     private readonly List<GameObject> spawnedFurniture = new();
 
@@ -64,14 +63,22 @@ public class FurniturePlacementController : MonoBehaviour
             return;
         }
 
+        FurnitureData selectedData =
+            FurnitureCatalogManager.Instance.GetSelectedFurniture();
+
+        if (selectedData == null)
+        {
+            Debug.LogWarning("No furniture selected.");
+            return;
+        }
+
         GameObject furniture = Instantiate(
-            furniturePrefab,
+            selectedData.prefab,
             anchor.transform.position,
             anchor.transform.rotation,
             anchor.transform
         );
 
-        // ✅ AUTO COLOR MATCH ON SPAWN
         if (colorSampler != null &&
             colorSampler.TryGetAverageColor(
                 new Vector2(Screen.width / 2f, Screen.height / 2f),

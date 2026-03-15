@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 451086814436330465}
   - component: {fileID: 1999849054452353693}
   - component: {fileID: 2157343451884647468}
-  - component: {fileID: 6946115939858558294}
+  - component: {fileID: 6174254505276518734}
   m_Layer: 0
   m_Name: TestFurniture
   m_TagString: Untagged
@@ -109,7 +109,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6946115939858558294
+--- !u!114 &6174254505276518734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +121,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4115fad86080afc40bc2629b3ef3faa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastManager: {fileID: 0}
-  colorSampler: {fileID: 0}
-  highlightEmissionColor: {r: 0.28235295, g: 0.6156863, b: 0.6156863, a: 1}
-  emissionIntensity: 2
-  selectedMaterial: {fileID: 2100000, guid: ac4c790e58f85f449b7c699c9eeec6da, type: 2}
-  minScale: 0.5
-  maxScale: 1.5

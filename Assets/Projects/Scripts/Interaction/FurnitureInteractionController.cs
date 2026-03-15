@@ -1,239 +1,141 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider))]
 public class FurnitureInteractionController : MonoBehaviour
 {
-    [Header("AR")]
-    [SerializeField] private ARRaycastManager raycastManager;
-    
-    [SerializeField] private EnvironmentColorSampler colorSampler;
-    
-    [Header("Highlight Settings")]
-    [SerializeField] private Color highlightEmissionColor = Color.yellow;
-    [SerializeField] private float emissionIntensity = 2f;
+    private ARRaycastManager raycastManager;
+    private Camera mainCamera;
 
-    private Color originalEmissionColor;
-    private bool hasEmission;
+    private bool isDragging;
 
+    private Vector2 previousTouch1Pos;
+    private Vector2 previousTouch2Pos;
 
-    [Header("Visual Feedback")]
-    [SerializeField] private Material selectedMaterial;
-
-    [Header("Scale Limits")]
-    [SerializeField] private float minScale = 0.5f;
-    [SerializeField] private float maxScale = 1.5f;
-
-    private static FurnitureInteractionController activeObject;
-
-    private Renderer objectRenderer;
-    private Material defaultMaterial;
-    private bool isSelected;
-
-    private float initialPinchDistance;
-    private Vector3 initialScale;
-    private float initialRotationAngle;
+    private float minScale = 0.2f;
+    private float maxScale = 5f;
 
     private static readonly List<ARRaycastHit> hits = new();
 
     private void Awake()
     {
-        objectRenderer = GetComponentInChildren<Renderer>();
-
-        if (objectRenderer != null)
-        {
-            if (objectRenderer.material.HasProperty("_EmissionColor"))
-            {
-                hasEmission = true;
-                originalEmissionColor =
-                    objectRenderer.material.GetColor("_EmissionColor");
-            }
-        }
-    }
-
-    
-    private void OnEnable()
-    {
-        if (AppModeController.Instance.IsColorPickMode())
-            Deselect();
+        raycastManager = FindFirstObjectByType<ARRaycastManager>();
+        mainCamera = Camera.main;
     }
 
     private void Update()
     {
         if (!AppModeController.Instance.IsEditMode())
-        {
-            Deselect();
-            return;
-        }
-
-        if (AppModeController.Instance.IsColorPickMode())
-        {
-            HandleColorPick();
-            return;
-        }
-
-        if (AppModeController.Instance == null ||
-            !AppModeController.Instance.IsEditMode())
-            return;
-
-
-        if (!isSelected)
-            return;
-
-        // Block UI touches
-        if (EventSystem.current != null &&
-            EventSystem.current.IsPointerOverGameObject(0))
             return;
 
         if (Input.touchCount == 1)
-            HandleMove(Input.GetTouch(0));
+        {
+            HandleSingleTouch(Input.GetTouch(0));
+        }
         else if (Input.touchCount == 2)
-            HandleRotateAndScale();
-        // Manual color pick (tap release while selected)
-        if (isSelected &&
-            AppModeController.Instance.IsEditMode() &&
-            Input.touchCount == 1)
         {
-            Touch touch = Input.GetTouch(0);
+            HandleTwoFingerGesture(
+                Input.GetTouch(0),
+                Input.GetTouch(1)
+            );
+        }
+    }
 
-            if (touch.phase == TouchPhase.Ended &&
-                touch.deltaPosition.magnitude < 5f) // tiny movement only
-            {
-                if (colorSampler != null &&
-                    colorSampler.TryGetAverageColor(touch.position, out Color sampledColor))
+    // ==============================
+    // ONE FINGER — DRAG TO MOVE
+    // ==============================
+
+    private void HandleSingleTouch(Touch touch)
+    {
+        Ray ray = mainCamera.ScreenPointToRay(touch.position);
+
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+
+                if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    ApplyColor(sampledColor);
+                    if (hit.transform == transform || hit.transform.IsChildOf(transform))
+                    {
+                        isDragging = true;
+                    }
                 }
-            }
-        }
 
-    }
-    private void ApplyColor(Color color)
-    {
-        if (objectRenderer != null)
-            objectRenderer.material.SetColor("_BaseColor", color);
-    }
+                break;
 
+            case TouchPhase.Moved:
 
-    // ================= Selection =================
+                if (!isDragging)
+                    return;
 
-    private void OnMouseDown()
-    {
-        Select();
-    }
+                if (raycastManager.Raycast(
+                    touch.position,
+                    hits,
+                    TrackableType.PlaneWithinPolygon))
+                {
+                    Pose hitPose = hits[0].pose;
+                    transform.position = Vector3.Lerp(
+                        transform.position,
+                        hitPose.position,
+                        0.5f
+                    );
+                }
 
-    private void Select()
-    {
-        if (activeObject != null && activeObject != this)
-            activeObject.Deselect();
+                break;
 
-        activeObject = this;
-        isSelected = true;
-
-        if (hasEmission)
-        {
-            objectRenderer.material.EnableKeyword("_EMISSION");
-            objectRenderer.material.SetColor(
-                "_EmissionColor",
-                highlightEmissionColor * emissionIntensity
-            );
+            case TouchPhase.Ended:
+            case TouchPhase.Canceled:
+                isDragging = false;
+                break;
         }
     }
 
+    // ==============================
+    // TWO FINGERS — ROTATE + SCALE
+    // ==============================
 
-    private void Deselect()
+    private void HandleTwoFingerGesture(Touch touch1, Touch touch2)
     {
-        isSelected = false;
-
-        if (hasEmission)
+        if (touch2.phase == TouchPhase.Began)
         {
-            objectRenderer.material.SetColor(
-                "_EmissionColor",
-                originalEmissionColor
-            );
-        }
-
-        if (activeObject == this)
-            activeObject = null;
-    }
-
-
-    // ================= Move =================
-
-    private void HandleMove(Touch touch)
-    {
-        if (touch.phase != TouchPhase.Moved)
-            return;
-
-        if (raycastManager.Raycast(
-                touch.position,
-                hits,
-                TrackableType.PlaneWithinPolygon))
-        {
-            transform.position = hits[0].pose.position;
-        }
-    }
-    private void HandleColorPick()
-    {
-        if (Input.touchCount != 1)
-            return;
-
-        Touch touch = Input.GetTouch(0);
-
-        if (touch.phase != TouchPhase.Ended)
-            return;
-
-        if (colorSampler != null &&
-            colorSampler.TryGetAverageColor(touch.position, out Color sampledColor))
-        {
-            ApplyColor(sampledColor);
-        }
-
-        // Optional: auto-exit color mode
-        AppModeController.Instance.SetEditMode();
-    }
-
-    // ================= Rotate & Scale =================
-
-    private void HandleRotateAndScale()
-    {
-        Touch t0 = Input.GetTouch(0);
-        Touch t1 = Input.GetTouch(1);
-
-        if (t0.phase == TouchPhase.Began || t1.phase == TouchPhase.Began)
-        {
-            initialPinchDistance = Vector2.Distance(t0.position, t1.position);
-            initialScale = transform.localScale;
-            initialRotationAngle = GetAngle(t0.position, t1.position);
+            previousTouch1Pos = touch1.position;
+            previousTouch2Pos = touch2.position;
             return;
         }
 
-        // ----- Scale -----
-        float currentDistance = Vector2.Distance(t0.position, t1.position);
-        float scaleFactor = currentDistance / initialPinchDistance;
+        // ---------- SCALE (Pinch) ----------
+        float prevDistance = Vector2.Distance(previousTouch1Pos, previousTouch2Pos);
+        float currentDistance = Vector2.Distance(touch1.position, touch2.position);
 
-        float targetScale = Mathf.Clamp(
-            initialScale.x * scaleFactor,
-            minScale,
-            maxScale
-        );
+        if (!Mathf.Approximately(prevDistance, 0))
+        {
+            float scaleFactor = currentDistance / prevDistance;
 
-        transform.localScale = Vector3.one * targetScale;
+            Vector3 newScale = transform.localScale * scaleFactor;
+            newScale = Vector3.Max(newScale, Vector3.one * minScale);
+            newScale = Vector3.Min(newScale, Vector3.one * maxScale);
 
-        // ----- Rotate -----
-        float currentAngle = GetAngle(t0.position, t1.position);
-        float deltaAngle = currentAngle - initialRotationAngle;
+            transform.localScale = newScale;
+        }
 
-        transform.Rotate(Vector3.up, deltaAngle, Space.World);
-        initialRotationAngle = currentAngle;
-    }
+        // ---------- ROTATION (Twist) ----------
+        float prevAngle = Mathf.Atan2(
+            previousTouch2Pos.y - previousTouch1Pos.y,
+            previousTouch2Pos.x - previousTouch1Pos.x
+        ) * Mathf.Rad2Deg;
 
-    private float GetAngle(Vector2 p1, Vector2 p2)
-    {
-        Vector2 dir = p2 - p1;
-        return Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float currentAngle = Mathf.Atan2(
+            touch2.position.y - touch1.position.y,
+            touch2.position.x - touch1.position.x
+        ) * Mathf.Rad2Deg;
+
+        float angleDelta = currentAngle - prevAngle;
+
+        transform.Rotate(0f, angleDelta, 0f);
+
+        previousTouch1Pos = touch1.position;
+        previousTouch2Pos = touch2.position;
     }
 }
