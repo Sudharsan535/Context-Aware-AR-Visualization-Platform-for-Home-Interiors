@@ -15,7 +15,7 @@ MonoBehaviour:
   furnitureName: Bed01
   category: 1
   prefab: {fileID: 7019885284991231734, guid: a7fa4c912254d2e4596be7069ded8b19, type: 3}
-  width: 0
-  depth: 0
-  height: 0
+  width: 3.971314
+  depth: 2.98174
+  height: 4.887783
   allowColorOverride: 1
