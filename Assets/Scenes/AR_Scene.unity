@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 299189389}
   - component: {fileID: 299189388}
   m_Layer: 5
-  m_Name: HomeScreen
+  m_Name: HomePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
