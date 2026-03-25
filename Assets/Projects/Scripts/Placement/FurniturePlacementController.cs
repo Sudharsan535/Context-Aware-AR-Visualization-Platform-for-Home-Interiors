@@ -91,6 +91,16 @@ public class FurniturePlacementController : MonoBehaviour
 
         AppModeController.Instance.SetEditMode();
     }
+    public void ClearAllFurniture()
+    {
+        foreach (var obj in spawnedFurniture)
+        {
+            if (obj != null)
+                Destroy(obj);
+        }
+
+        spawnedFurniture.Clear();
+    }
 
     private void ApplyColorToFurniture(GameObject furniture, Color color)
     {

@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
-  m_Name: Bed01 3
-  m_EditorClassIdentifier: 
-  furnitureName: Bed04
-  category: 1
-  prefab: {fileID: 4615209425349685853, guid: a551ff7a34d1ee147929a63a3833bb02, type: 3}
-  width: 4.522985
-  depth: 1.541118
-  height: 5.180192
-  allowColorOverride: 1
+  m_Name: Chair03
+  m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
+  furnitureName: Chair01
+  description: 
+  category: 3
+  previewImage: {fileID: 0}
+  prefab: {fileID: 889199373434496025, guid: 24219f902bbfde445a93d04d70258e7f, type: 3}
+  width: 1.658967
+  depth: 1.640884
+  height: 1.711162

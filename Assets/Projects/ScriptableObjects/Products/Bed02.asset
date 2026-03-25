@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
-  m_Name: Bed01 4
+  m_Name: Bed02
   m_EditorClassIdentifier: 
-  furnitureName: Bed05
+  furnitureName: Bed02
+  description: This is a bed
   category: 1
-  prefab: {fileID: 6953545522410139751, guid: f3858c0f763842e40bf0c6eac2687a06, type: 3}
-  width: 3.971314
-  depth: 2.98174
-  height: 4.887783
-  allowColorOverride: 1
+  previewImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  prefab: {fileID: 6816575801108871023, guid: 411108a3eb13299419b5edda27f2154a, type: 3}
+  width: 2.812192
+  depth: 2.231472
+  height: 4.933816
