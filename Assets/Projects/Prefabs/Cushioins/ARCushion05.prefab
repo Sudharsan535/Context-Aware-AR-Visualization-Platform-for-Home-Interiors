@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7954064200730365289}
   - component: {fileID: 1086944800727195668}
   - component: {fileID: 2880145631054756037}
+  - component: {fileID: 4565190126875416492}
   m_Layer: 0
   m_Name: ARCushion05
   m_TagString: Untagged
@@ -67,6 +68,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4115fad86080afc40bc2629b3ef3faa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4565190126875416492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772603216858177770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec124c378670ec4cbe5dd08788cf0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FurnitureMaterialController
+  frameRenderer: {fileID: 0}
+  mattressRenderer: {fileID: 0}
+  blanketRenderer: {fileID: 0}
+  defaultRenderer: {fileID: 1507796532113126681}
 --- !u!1 &1834339418427870179
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +145,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -149,7 +168,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class FurnitureInteractionController : MonoBehaviour
 {
     private ARRaycastManager raycastManager;
+    private FurnitureMaterialController materialController;
     private Camera mainCamera;
 
     private bool isDragging;
@@ -21,6 +22,7 @@ public class FurnitureInteractionController : MonoBehaviour
 
     private void Awake()
     {
+        materialController = GetComponent<FurnitureMaterialController>();
         raycastManager = FindFirstObjectByType<ARRaycastManager>();
         mainCamera = Camera.main;
     }
@@ -60,6 +62,12 @@ public class FurnitureInteractionController : MonoBehaviour
                     if (hit.transform == transform || hit.transform.IsChildOf(transform))
                     {
                         isDragging = true;
+
+                        // 🎨 Open color panel
+                        if (materialController != null)
+                        {
+                            ColorUIController.Instance.Show(materialController);
+                        }
                     }
                 }
 

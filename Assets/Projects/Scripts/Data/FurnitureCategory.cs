@@ -5,5 +5,8 @@ public enum FurnitureCategory
     Table,
     Chair,
     Decor,
-    Storage
+    Storage,
+    Closets,
+    Cushions,
+    Drawers
 }

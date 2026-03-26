@@ -5,15 +5,28 @@ using TMPro;
 
 public class FurniturePlacementController : MonoBehaviour
 {
+    // ✅ SINGLETON
+    public static FurniturePlacementController Instance { get; private set; }
+
     [Header("References")]
     [SerializeField] private PlacementIndicatorController placementIndicator;
     [SerializeField] private ARAnchorManager anchorManager;
     [SerializeField] private TextMeshProUGUI debugText;
     [SerializeField] private EnvironmentColorSampler colorSampler;
 
-   
-
     private readonly List<GameObject> spawnedFurniture = new();
+
+    private void Awake()
+    {
+        // ✅ Singleton Setup
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -21,14 +34,12 @@ public class FurniturePlacementController : MonoBehaviour
             !AppModeController.Instance.IsPlacementMode())
             return;
 
-
-
+        // Debug info (optional)
         if (debugText != null)
         {
             debugText.text =
                 $"Touches: {Input.touchCount}\n" +
                 $"PlacementValid: {placementIndicator.IsPlacementValid()}";
-            
         }
 
         if (!placementIndicator.IsPlacementValid())
@@ -52,6 +63,7 @@ public class FurniturePlacementController : MonoBehaviour
     {
         Pose pose = placementIndicator.GetPlacementPose();
 
+        // Create anchor object
         GameObject anchorObject = new GameObject("FurnitureAnchor");
         anchorObject.transform.SetPositionAndRotation(pose.position, pose.rotation);
 
@@ -79,6 +91,7 @@ public class FurniturePlacementController : MonoBehaviour
             anchor.transform
         );
 
+        // Optional: auto color match
         if (colorSampler != null &&
             colorSampler.TryGetAverageColor(
                 new Vector2(Screen.width / 2f, Screen.height / 2f),
@@ -91,12 +104,24 @@ public class FurniturePlacementController : MonoBehaviour
 
         AppModeController.Instance.SetEditMode();
     }
+
+    // ✅ CLEANUP SYSTEM (IMPORTANT FIX)
     public void ClearAllFurniture()
     {
         foreach (var obj in spawnedFurniture)
         {
             if (obj != null)
-                Destroy(obj);
+            {
+                // 🔥 Destroy anchor (parent), not just object
+                if (obj.transform.parent != null)
+                {
+                    Destroy(obj.transform.parent.gameObject);
+                }
+                else
+                {
+                    Destroy(obj);
+                }
+            }
         }
 
         spawnedFurniture.Clear();
@@ -106,7 +131,7 @@ public class FurniturePlacementController : MonoBehaviour
     {
         Renderer renderer = furniture.GetComponentInChildren<Renderer>();
 
-        if (renderer != null)
+        if (renderer != null && renderer.material.HasProperty("_BaseColor"))
         {
             renderer.material.SetColor("_BaseColor", color);
         }

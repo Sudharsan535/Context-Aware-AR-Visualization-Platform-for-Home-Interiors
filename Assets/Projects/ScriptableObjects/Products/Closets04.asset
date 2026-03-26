@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
+  m_Name: Closets04
+  m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
+  furnitureName: Closet
+  description: 
+  category: 6
+  previewImage: {fileID: 0}
+  prefab: {fileID: 6626231140295393069, guid: e52c2b5624a72ea4698e6b731b5902c7, type: 3}
+  width: 1.379639
+  depth: 2.583984
+  height: 1.082882

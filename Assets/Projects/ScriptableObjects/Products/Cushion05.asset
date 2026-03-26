@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
+  m_Name: Cushion05
+  m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
+  furnitureName: 
+  description: 
+  category: 7
+  previewImage: {fileID: 0}
+  prefab: {fileID: 1772603216858177770, guid: 74d52ca59b624864a8aad3a4810a24ab, type: 3}
+  width: 0.6889648
+  depth: 0.6887207
+  height: 0.3611144

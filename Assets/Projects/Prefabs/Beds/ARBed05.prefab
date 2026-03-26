@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 697793411918899254}
   - component: {fileID: 8556929240495104021}
   - component: {fileID: 3864357987785167157}
+  - component: {fileID: 3276981174647969385}
   m_Layer: 0
   m_Name: ARBed05
   m_TagString: Untagged
@@ -157,3 +158,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4115fad86080afc40bc2629b3ef3faa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3276981174647969385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953545522410139751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec124c378670ec4cbe5dd08788cf0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FurnitureMaterialController
+  frameRenderer: {fileID: 0}
+  mattressRenderer: {fileID: 2862954721610793593}
+  blanketRenderer: {fileID: 0}

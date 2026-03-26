@@ -30,6 +30,9 @@ public class ProductDetailUI : MonoBehaviour
 
     public void OnViewInAR()
     {
+        // ✅ Clean previous objects
+        FurniturePlacementController.Instance?.ClearAllFurniture();
+
         FurnitureCatalogManager.Instance.SelectFurniture(current);
 
         UIManager.Instance.ShowPanel(UIPanelType.ARView);
