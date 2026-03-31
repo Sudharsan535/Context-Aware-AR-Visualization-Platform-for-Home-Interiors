@@ -10,23 +10,35 @@ public class AIColorSuggestion : MonoBehaviour
         Instance = this;
     }
 
-    // 🎯 MAIN FUNCTION
-    public List<Color> GenerateSuggestions(Color baseColor)
+    public List<Color> GenerateSuggestions(ContextData context)
     {
         List<Color> suggestions = new List<Color>();
 
+        Color baseColor = context.dominantColor;
+
         Color.RGBToHSV(baseColor, out float h, out float s, out float v);
 
-        // 1. Complementary
-        suggestions.Add(Color.HSVToRGB((h + 0.5f) % 1f, s, v));
+        // 🎯 ADAPT BASED ON ENVIRONMENT
 
-        // 2. Analogous
-        suggestions.Add(Color.HSVToRGB((h + 0.08f) % 1f, s, v));
-        suggestions.Add(Color.HSVToRGB((h - 0.08f + 1f) % 1f, s, v));
+        switch (context.environmentType)
+        {
+            case EnvironmentType.Dark:
+                // Brighter colors for dark rooms
+                suggestions.Add(Color.HSVToRGB(h, s * 0.6f, Mathf.Clamp01(v + 0.3f)));
+                suggestions.Add(Color.white);
+                break;
 
-        // 3. Neutral tones
-        suggestions.Add(Color.HSVToRGB(h, 0.2f, v)); // soft
-        suggestions.Add(Color.HSVToRGB(h, s * 0.3f, v * 0.9f)); // muted
+            case EnvironmentType.Bright:
+                // Softer tones for bright rooms
+                suggestions.Add(Color.HSVToRGB(h, s * 0.3f, v * 0.9f));
+                suggestions.Add(Color.gray);
+                break;
+
+            case EnvironmentType.Normal:
+                suggestions.Add(Color.HSVToRGB((h + 0.5f) % 1f, s, v)); // complementary
+                suggestions.Add(Color.HSVToRGB((h + 0.1f) % 1f, s, v)); // analogous
+                break;
+        }
 
         return suggestions;
     }

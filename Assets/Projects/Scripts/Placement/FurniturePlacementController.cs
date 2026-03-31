@@ -12,7 +12,6 @@ public class FurniturePlacementController : MonoBehaviour
     [SerializeField] private PlacementIndicatorController placementIndicator;
     [SerializeField] private ARAnchorManager anchorManager;
     [SerializeField] private TextMeshProUGUI debugText;
-    [SerializeField] private EnvironmentColorSampler colorSampler;
 
     private readonly List<GameObject> spawnedFurniture = new();
 
@@ -91,13 +90,15 @@ public class FurniturePlacementController : MonoBehaviour
             anchor.transform
         );
 
-        // Optional: auto color match
-        if (colorSampler != null &&
-            colorSampler.TryGetAverageColor(
-                new Vector2(Screen.width / 2f, Screen.height / 2f),
-                out Color sampledColor))
+        // ✅ CONTEXT-AWARE AI (NEW SYSTEM)
+        FurnitureMaterialController materialController =
+            furniture.GetComponent<FurnitureMaterialController>();
+
+        if (materialController != null &&
+            ContextAnalysisEngine.Instance != null &&
+            ContextAnalysisEngine.Instance.TryAnalyze(out ContextData context))
         {
-            ApplyColorToFurniture(furniture, sampledColor);
+            AIColorUIController.Instance.ShowSuggestions(context, materialController);
         }
 
         spawnedFurniture.Add(furniture);
