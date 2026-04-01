@@ -17,8 +17,8 @@ public class AIColorUIController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        panel.SetActive(false);
     }
+    
 
     public void ShowSuggestions(ContextData context, FurnitureMaterialController target)
     {
@@ -41,6 +41,13 @@ public class AIColorUIController : MonoBehaviour
 
             spawned.Add(swatch);
         }
+        if (panel == null)
+        {
+            Debug.Log("Panel is NULL");
+            return;
+        }
+
+        panel.SetActive(true);
 
         panel.SetActive(true);
     }

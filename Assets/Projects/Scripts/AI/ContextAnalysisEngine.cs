@@ -15,28 +15,23 @@ public class ContextAnalysisEngine : MonoBehaviour
     {
         context = new ContextData();
 
-        if (colorSampler == null)
-            return false;
+        Color sampledColor = Color.gray; // default
 
-        // Sample center of screen
-        if (!colorSampler.TryGetAverageColor(
-                new Vector2(Screen.width / 2f, Screen.height / 2f),
-                out Color sampledColor))
+        if (colorSampler != null)
         {
-            return false;
+            colorSampler.TryGetAverageColor(
+                new Vector2(Screen.width / 2f, Screen.height / 2f),
+                out sampledColor
+            );
         }
 
-        // 🎯 SET COLOR
         context.dominantColor = sampledColor;
 
-        // 🎯 CALCULATE BRIGHTNESS
         float brightness = CalculateBrightness(sampledColor);
         context.brightness = brightness;
-
-        // 🎯 CLASSIFY ENVIRONMENT
         context.environmentType = ClassifyEnvironment(brightness);
 
-        return true;
+        return true; // 🔥 ALWAYS TRUE
     }
 
     // ==============================

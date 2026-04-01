@@ -42,6 +42,17 @@ public class FurnitureMaterialController : MonoBehaviour
         if (r != null)
             r.material = new Material(r.material);
     }
+    void Start()
+    {
+        ContextData test = new ContextData
+        {
+            dominantColor = Color.red,
+            brightness = 0.5f,
+            environmentType = EnvironmentType.Normal
+        };
+
+        AIColorUIController.Instance.ShowSuggestions(test, null);
+    }
 
     // ==============================
     // BED PART CONTROL
