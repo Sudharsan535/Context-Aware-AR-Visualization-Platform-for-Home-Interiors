@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Cushion01
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: CloudSoft Cushion
+  description: 'Dimensions: 40 x 40 x 10 cm
+
+    Material: Cotton + Foam
+
+    Color
+    Variants: White, Sky Blue, Pink
+
+    Best For: Sofas, Beds'
   category: 7
   previewImage: {fileID: 0}
   prefab: {fileID: 6439429014548364418, guid: 43f4e166b8c8d284b82360443b256b4c, type: 3}

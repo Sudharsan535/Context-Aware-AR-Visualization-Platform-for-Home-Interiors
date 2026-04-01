@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Closets01
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Closet
-  description: 
+  furnitureName: SpaceMax Closet
+  description: 'Dimensions: 180 x 120 x 60 cm
+
+    Material: Engineered Wood
+
+    Color
+    Variants: Oak, White, Walnut
+
+    Best For: Compact Homes, Organized Storage'
   category: 6
   previewImage: {fileID: 0}
   prefab: {fileID: 6282917835466719152, guid: 9aa97823d9d5e06428e0a3a58d4ccab0, type: 3}

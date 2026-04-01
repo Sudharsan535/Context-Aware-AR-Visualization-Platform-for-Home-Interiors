@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Chair03
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Chair01
-  description: 
+  furnitureName: ComfyNest Chair
+  description: 'Dimensions: 55 x 60 x 100 cm
+
+    Material: Cushioned Fabric + Wood
+
+    Color
+    Variants: Cream, Light Grey, Pastel Blue
+
+    Best For: Relaxation Corners, Reading
+    Areas'
   category: 3
   previewImage: {fileID: 0}
   prefab: {fileID: 889199373434496025, guid: 24219f902bbfde445a93d04d70258e7f, type: 3}

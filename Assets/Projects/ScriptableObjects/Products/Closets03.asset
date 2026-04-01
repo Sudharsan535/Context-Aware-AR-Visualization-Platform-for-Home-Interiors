@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Closets03
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Closet
-  description: 
+  furnitureName: SlidePro Closet
+  description: 'Dimensions: 210 x 180 x 70 cm
+
+    Material: Engineered Wood + Glass
+    Panels
+
+    Color Variants: Frosted Glass, Black & White Combo
+
+    Best For:
+    Modern Apartments'
   category: 6
   previewImage: {fileID: 0}
   prefab: {fileID: 8415147295045693031, guid: 5cd20e2f643e38f439425a00cb0d45a5, type: 3}

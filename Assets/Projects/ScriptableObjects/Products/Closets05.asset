@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Closets05
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Closet
-  description: 
+  furnitureName: ClassicWood Closet
+  description: 'Dimensions: 205 x 160 x 70 cm
+
+    Material: Solid Wood
+
+    Color
+    Variants: Teak, Mahogany, Walnut
+
+    Best For: Traditional Homes'
   category: 6
   previewImage: {fileID: 0}
   prefab: {fileID: 1318769432016453220, guid: ecab5946fc82ea5459c10139ebfc248f, type: 3}

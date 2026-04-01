@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Drawer05
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: SmartHold Drawer
+  description: 'Dimensions: 65 x 40 x 85 cm
+
+    Material: Engineered Wood
+
+    Color
+    Variants: Brown, Beige
+
+    Best For: Compact Storage Needs'
   category: 8
   previewImage: {fileID: 0}
   prefab: {fileID: 7082792535737686096, guid: 04805d9fbd334654b92f9598db4ec946, type: 3}

@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Bed05
   m_EditorClassIdentifier: 
-  furnitureName: Bed05
-  description: This is a bed
+  furnitureName: Zenith Storage Bed
+  description: 'Dimensions: 205 x 170 x 110 cm
+
+    Material: Plywood + Upholstery
+
+    Color
+    Variants: Dark Grey, Navy Blue, Beige
+
+    Best For: Luxury Bedrooms, Master
+    Bedrooms'
   category: 1
-  previewImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  previewImage: {fileID: 524623759, guid: 5e8493d3039b2d043afa3c55360c186a, type: 3}
   prefab: {fileID: 6953545522410139751, guid: f3858c0f763842e40bf0c6eac2687a06, type: 3}
   width: 3.76295
   depth: 0.8124534

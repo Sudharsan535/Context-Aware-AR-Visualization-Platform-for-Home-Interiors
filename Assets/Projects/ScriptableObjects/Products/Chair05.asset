@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Chair05
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Chair01
-  description: 
+  furnitureName: NeoForm Chair
+  description: 'Dimensions: 48 x 52 x 88 cm
+
+    Material: Molded Plastic
+
+    Color
+    Variants: Yellow, Red, White
+
+    Best For: Modern Interiors, AR Showcase Spaces'
   category: 3
   previewImage: {fileID: 0}
   prefab: {fileID: 9125278920771083639, guid: c8668666e0faac64caea9cc3fd411bcd, type: 3}

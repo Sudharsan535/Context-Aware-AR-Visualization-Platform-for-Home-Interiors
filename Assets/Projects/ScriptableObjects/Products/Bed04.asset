@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Bed04
   m_EditorClassIdentifier: 
-  furnitureName: Bed04
-  description: This is a bed
+  furnitureName: Velora Classic Bed
+  description: 'Dimensions: 200 x 180 x 105 cm
+
+    Material: Solid Sheesham Wood
+
+    Color
+    Variants: Honey Finish, Mahogany, Dark Walnut
+
+    Best For: Traditional Homes,
+    Spacious Rooms'
   category: 1
-  previewImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  previewImage: {fileID: -1774069567, guid: 170938ee5039a994a99a653673c846b7, type: 3}
   prefab: {fileID: 4615209425349685853, guid: a551ff7a34d1ee147929a63a3833bb02, type: 3}
   width: 4.522985
   depth: 1.541118

@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Bed01
   m_EditorClassIdentifier: 
-  furnitureName: Bed01
-  description: This is a bed
+  furnitureName: AstraSleep Bed
+  description: 'Dimensions: 200 x 160 x 100 cm
+
+    Material: Engineered Wood + Fabric
+    Headboard
+
+    Color Variants: Walnut Brown, Light Oak, Grey Fabric
+
+    Best
+    For: Minimal Bedrooms, Compact Spaces'
   category: 1
-  previewImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  previewImage: {fileID: 846137922, guid: d296be87afb97324f89f7f309c9fb5e2, type: 3}
   prefab: {fileID: 7019885284991231734, guid: a7fa4c912254d2e4596be7069ded8b19, type: 3}
   width: 3.971314
   depth: 2.98174

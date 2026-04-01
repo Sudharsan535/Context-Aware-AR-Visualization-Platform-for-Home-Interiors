@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Drawer04
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: UrbanStack Drawer
+  description: 'Dimensions: 75 x 45 x 95 cm
+
+    Material: MDF + Laminate
+
+    Color
+    Variants: White, Matte Black
+
+    Best For: Modern Interiors'
   category: 8
   previewImage: {fileID: 0}
   prefab: {fileID: 5989663852006541462, guid: 51ded64a7d1adc44d97b5848c81db8e6, type: 3}

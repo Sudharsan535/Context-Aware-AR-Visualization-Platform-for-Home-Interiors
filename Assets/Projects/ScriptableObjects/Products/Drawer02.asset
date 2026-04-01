@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Drawer02
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: FlexiStore Unit
+  description: 'Dimensions: 80 x 45 x 90 cm
+
+    Material: Engineered Wood
+
+    Color
+    Variants: Oak, Walnut
+
+    Best For: Bedroom Storage'
   category: 8
   previewImage: {fileID: 0}
   prefab: {fileID: 3939323911468298812, guid: a20dc526241b4dc42b5539fe7a9ac726, type: 3}

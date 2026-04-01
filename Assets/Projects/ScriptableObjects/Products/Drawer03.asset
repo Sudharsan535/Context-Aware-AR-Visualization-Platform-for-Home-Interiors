@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Drawer03
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: PrimeStack Drawer
+  description: 'Dimensions: 70 x 50 x 100 cm
+
+    Material: Metal + Wood
+
+    Color
+    Variants: Black, Silver
+
+    Best For: Office Storage'
   category: 8
   previewImage: {fileID: 0}
   prefab: {fileID: 1973836999633480792, guid: 89fae1a1861e88943a198f95508c6493, type: 3}

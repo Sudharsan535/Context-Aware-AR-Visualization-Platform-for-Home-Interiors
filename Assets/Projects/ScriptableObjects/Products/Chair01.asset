@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Chair01
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Chair01
-  description: 
+  furnitureName: UrbanEase Chair
+  description: 'Dimensions: 50 x 50 x 95 cm
+
+    Material: Fabric + Wood
+
+    Color
+    Variants: Grey, Olive Green, Beige
+
+    Best For: Living Rooms, Apartments'
   category: 3
   previewImage: {fileID: 0}
   prefab: {fileID: 8576932276974932316, guid: b280fc694025c9443b4674e282529809, type: 3}

@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Closets02
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Closet
-  description: 
+  furnitureName: Elegra Wardrobe
+  description: 'Dimensions: 200 x 150 x 65 cm
+
+    Material: Plywood + Laminate
+
+    Color
+    Variants: Beige, Dark Brown, Glossy White
+
+    Best For: Premium Bedrooms'
   category: 6
   previewImage: {fileID: 0}
   prefab: {fileID: 8208652484510182573, guid: 8cd1c61e73f2ea34b959a16c1d151104, type: 3}

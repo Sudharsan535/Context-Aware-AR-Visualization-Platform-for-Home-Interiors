@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Cushion03
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: Relaxo Cushion
+  description: 'Dimensions: 50 x 30 x 10 cm
+
+    Material: Memory Foam
+
+    Color
+    Variants: Grey, Navy Blue
+
+    Best For: Back Support, Office Chairs'
   category: 7
   previewImage: {fileID: 0}
   prefab: {fileID: 7811554586052750377, guid: a921f77d94da81a478e7700b7b1469fd, type: 3}

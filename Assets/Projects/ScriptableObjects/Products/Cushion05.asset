@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Cushion05
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: VibeFit Cushion
+  description: 'Dimensions: 35 x 35 x 8 cm
+
+    Material: Cotton Blend
+
+    Color
+    Variants: Multi-color Patterns
+
+    Best For: Casual Spaces, Youth Rooms'
   category: 7
   previewImage: {fileID: 0}
   prefab: {fileID: 1772603216858177770, guid: 74d52ca59b624864a8aad3a4810a24ab, type: 3}

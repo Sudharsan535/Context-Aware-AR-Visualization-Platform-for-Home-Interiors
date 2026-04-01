@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Bed02
   m_EditorClassIdentifier: 
-  furnitureName: Bed02
-  description: This is a bed
+  furnitureName: LumaRest Bed
+  description: 'Dimensions: 198 x 150 x 95 cm
+
+    Material: Solid Wood
+
+    Color
+    Variants: Teak Brown, Natural Wood, Matte White
+
+    Best For: Cozy Interiors,
+    Family Homes'
   category: 1
-  previewImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  previewImage: {fileID: 267877158, guid: 09eac0a1601509d4eb75d3108dd85618, type: 3}
   prefab: {fileID: 6816575801108871023, guid: 411108a3eb13299419b5edda27f2154a, type: 3}
   width: 2.812192
   depth: 2.231472

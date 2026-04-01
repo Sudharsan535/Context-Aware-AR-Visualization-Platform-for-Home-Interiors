@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Cushion04
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: PlushNest Cushion
+  description: 'Dimensions: 40 x 40 x 15 cm
+
+    Material: Velvet Fabric
+
+    Color
+    Variants: Maroon, Emerald Green, Royal Blue
+
+    Best For: Luxury Interiors'
   category: 7
   previewImage: {fileID: 0}
   prefab: {fileID: 2020584031529555000, guid: 04fbe38c8f5338f4abdad2cf59cde335, type: 3}

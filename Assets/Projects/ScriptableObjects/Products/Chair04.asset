@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Chair04
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Chair01
-  description: 
+  furnitureName: Axis Lounge Chair
+  description: 'Dimensions: 70 x 75 x 85 cm
+
+    Material: Leather + Metal
+
+    Color
+    Variants: Black Leather, Brown Leather, White
+
+    Best For: Lounges, Premium
+    Interiors'
   category: 3
   previewImage: {fileID: 0}
   prefab: {fileID: 483639058090303891, guid: 6e1221fba226647409d003d99e2d7dd2, type: 3}

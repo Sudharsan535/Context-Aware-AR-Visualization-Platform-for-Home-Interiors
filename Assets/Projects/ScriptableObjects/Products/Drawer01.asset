@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Drawer01
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: 
-  description: 
+  furnitureName: StoreEase Drawer
+  description: 'Dimensions: 60 x 40 x 70 cm
+
+    Material: Plastic
+
+    Color Variants:
+    White, Grey
+
+    Best For: Utility Rooms'
   category: 8
   previewImage: {fileID: 0}
   prefab: {fileID: 4012385674410642882, guid: 6f0d8f4b00442bd4d8670637f31b039e, type: 3}

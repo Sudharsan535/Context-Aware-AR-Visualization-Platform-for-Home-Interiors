@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Closets04
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Closet
-  description: 
+  furnitureName: ModuFlex Wardrobe
+  description: 'Dimensions: 195 x 140 x 60 cm
+
+    Material: Modular MDF
+
+    Color
+    Variants: White, Grey, Wood Finish
+
+    Best For: Custom Storage Needs'
   category: 6
   previewImage: {fileID: 0}
   prefab: {fileID: 6626231140295393069, guid: e52c2b5624a72ea4698e6b731b5902c7, type: 3}

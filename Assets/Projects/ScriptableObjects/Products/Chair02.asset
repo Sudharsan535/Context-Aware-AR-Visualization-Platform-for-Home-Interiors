@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ede956bfda221e4185cd4a3bcef298d, type: 3}
   m_Name: Chair02
   m_EditorClassIdentifier: Assembly-CSharp::FurnitureData
-  furnitureName: Chair01
-  description: 
+  furnitureName: FlexiSit Chair
+  description: 'Dimensions: 45 x 45 x 90 cm
+
+    Material: Plastic + Metal Frame
+
+    Color
+    Variants: Black, White, Blue
+
+    Best For: Study Rooms, Office Use'
   category: 3
   previewImage: {fileID: 0}
   prefab: {fileID: 6620368033765555784, guid: d48ae8664a0e65b43b8bd77ddca26894, type: 3}
